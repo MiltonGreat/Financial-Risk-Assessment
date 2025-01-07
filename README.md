@@ -6,7 +6,7 @@ This project explores and develops a machine learning pipeline to predict loan a
 
 ### Objectives
 
-The aim of this project is to analyze and predict loan approvals while assessing financial risks associated with borrowers. This involves creating a classification model that predicts whether a loan will be approved (binary classification). Key objectives include:
+The goal of this project is to analyze and predict loan approvals while assessing financial risks associated with borrowers. This involves creating a classification model that predicts whether a loan will be approved (binary classification). Key objectives include:
 
 - Clean and preprocess financial and demographic data.
 - Engineer meaningful features for better predictive performance.
