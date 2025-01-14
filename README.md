@@ -2,7 +2,11 @@
 
 ### Overview
 
-This project explores and develops a machine learning pipeline to predict loan approvals based on customer financial and demographic data. The pipeline involves data cleaning, feature engineering, exploratory data analysis, and classification model training and evaluation.
+This project aims to enhance loan approval processes by developing a machine learning model that predicts loan approvals while ensuring fairness and transparency. By leveraging the "Give Me Some Credit" dataset, the model analyzes financial and demographic data to assess credit risk, balancing high predictive accuracy with ethical fairness standards.
+
+### Problem Statement
+
+Loan approval decisions can significantly impact individuals and businesses, but traditional credit scoring models often fail to address systemic biases or adapt to complex, non-linear relationships in data. This project seeks to develop a machine learning pipeline that predicts loan approvals while addressing fairness concerns to ensure equitable access to credit across all demographic groups.
 
 ### Objectives
 
@@ -15,45 +19,53 @@ The goal of this project is to analyze and predict loan approvals while assessin
 
 ### Dataset
 
-The dataset includes customer financial data such as annual income, monthly debt payments, credit history, and other demographic information.
+The dataset contains 20,000 records, including demographic and financial information such as age, income, credit history, and debt levels. It focuses on predicting serious delinquency (90+ days overdue).
 
-### Pipeline
+### Solution Approach
 
-##### Data Preprocessing
-- Handled missing values by filling numerical columns with median values and categorical columns with mode.
-- Converted date columns into meaningful numeric features (e.g., year, month).
-- One-hot encoded categorical variables.
-- Standardized numerical features using StandardScaler.
+#### Data Cleaning:
+- Imputed missing values for MonthlyIncome and NumberOfDependents using median imputation.
+- Removed outliers in Age outside the range of 18–100.
+- Standardized features to ensure uniform scaling.
 
-#### Feature Engineering
+#### Exploratory Data Analysis (EDA):
+- Visualized correlations using heatmaps and histograms to identify key predictors like RevolvingUtilizationOfUnsecuredLines and DebtRatio.
+- Highlighted class imbalances in target variable distribution.
 
-Created new features such as:
-- DebtToIncomeRatio: Ratio of monthly debt payments to annual income.
-- NetWorth: Total assets minus total liabilities.
+#### Feature Engineering:
+- Created DebtToIncomeRatio (monthly debt payments divided by income) and NetWorth (assets minus liabilities) to capture financial stability.
 
-Model Training
-- Split the data into training (80%) and testing (20%) sets.
-- Trained a Random Forest Classifier with balanced class weights to handle class imbalance.
+#### Model Building:
+- Trained multiple models (Logistic Regression, Random Forest, Gradient Boosting) to predict loan approvals.
+- Introduced adversarial debiasing and fairness constraints to mitigate bias.
 
-Model Evaluation
-- Evaluated the model using metrics:
-- Accuracy: 92.33%
+#### Evaluation:
+- Used traditional metrics like accuracy (92.33%), precision, recall, and F1-score.
+- Measured fairness using demographic parity and equalized odds to ensure ethical decision-making.
 
 ### Results
 
-- Accuracy	92.33%
-- Precision (0)	93%
-- Precision (1)	91%
-- Recall (0)	97%
-- Recall (1)	78%
-- F1-score (0)	95%
-- F1-score (1)	84%
+#### Performance:
+- Accuracy: 92.33%, Precision (0): 93%, Precision (1): 91%, F1-score (1): 84%.
+- Random Forest outperformed other models, achieving robust results while maintaining fairness.
+
+#### Fairness Insights:
+- Fairness constraints successfully reduced disparate impact between demographic groups, promoting equitable access to loans.
+
+#### Key Visuals:
+- ROC-AUC curves showed strong discrimination between risk classes.
+- Bar charts compared fairness metrics across models.
 
 ### Key Insights
 
 - High precision for approved loans (1), making the model suitable for reducing false positives in financial risk assessment.
 - High recall for non-approved loans (0), ensuring fewer risky approvals.
 - The DebtToIncomeRatio and NetWorth were significant features influencing loan approval predictions.
+
+### Challenges
+
+- Balancing high accuracy with fairness metrics required iterative testing and model adjustments.
+- Addressing class imbalance involved careful resampling and weighting strategies.
 
 ### Source
 
